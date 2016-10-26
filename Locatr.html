@@ -6,12 +6,12 @@
     <script type="text/javascript" src="cloudLocation.js"></script>
     <script src="https://cdn.apple-cloudkit.com/ck/1/cloudkit.js" async></script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT20KRubUbmT0qbCeY1661FCv7TgiNJoM">
     </script>
 
     <style>
         html, body {
-            height: 50%;
+            height: 75%;
             margin: 0;
             padding: 0;
         }
@@ -26,7 +26,7 @@
 <div class="container">
 
     <div class="page-header">
-        <h1>Locatr <small>CloudKit JS Application</small></h1>
+        <h1>Frostlight Locatr <small>CloudKit JS Application</small></h1>
     </div>
 
     <div id="map"></div>
@@ -36,9 +36,9 @@
     <div data-bind="foreach: locations">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h4><a data-bind="click: $parent.initMap"><span data-bind="text: fields.locationTitle.value"></span></a></h4>
-                <p>Latitute: <span data-bind="text: fields.sharedLocation.value.latitude"></span></p>
-                <p>Longitude: <span data-bind="text: fields.sharedLocation.value.longitude"></span></p>
+                <h4><a data-bind="click: $parent.initMap"><span data-bind="text: fields.name.value"></span></a></h4>
+                <p>Latitute: <span data-bind="text: fields.location.value.latitude"></span></p>
+                <p>Longitude: <span data-bind="text: fields.location.value.longitude"></span></p>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
 
 <script>
     function initMap () {
-        var myLatLng = {lat: 51.2, lng: -1.54};
+        var myLatLng = {lat: 59.314446, lng: 18.074375};
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,
             center: myLatLng

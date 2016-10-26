@@ -4,8 +4,8 @@
 window.addEventListener('cloudkitloaded', function() {
     CloudKit.configure({
         containers: [{
-            containerIdentifier: 'iCloud.com.brianAdvent.Locatr',
-            apiToken: 'YOUR_KEY',
+            containerIdentifier: 'iCloud.com.Frostlight.Frostlight',
+            apiToken: 'e929f3df725d09779f16bff52066b7f08c2ff4e90cf41d70cc27e4adfaab52a4',
             environment: 'development'
         }]
     });
@@ -17,10 +17,10 @@ window.addEventListener('cloudkitloaded', function() {
 
         self.locations = ko.observableArray();
 
-        self.newLocationTitle = ko.observable('');
+        self.newLocationTitle = ko.observable(''); //OBS OBS OBS OBS OBS OBS OBS OBS OBS OBS!!!!!!!!!!!!!!!!
 
         self.fetchRecords = function() {
-            var query = { recordType: 'Position' };
+            var query = { recordType: 'Client' };
 
             // Execute the query.
             return publicDB.performQuery(query).then(function (response) {
@@ -41,7 +41,7 @@ window.addEventListener('cloudkitloaded', function() {
         };
 
         self.initMap = function (location) {
-            var myLatLng = {lat: location.fields.sharedLocation.value.latitude, lng: location.fields.sharedLocation.value.longitude};
+            var myLatLng = {lat: location.fields.location.value.latitude, lng: location.fields.location.value.longitude};
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 4,
