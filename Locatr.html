@@ -1,12 +1,12 @@
 <html>
 <head>
-    <title>Locatr Example</title>
+    <title>Frostlight Locatr</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
     <script type="text/javascript" src="cloudLocation.js"></script>
     <script src="https://cdn.apple-cloudkit.com/ck/1/cloudkit.js" async></script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT20KRubUbmT0qbCeY1661FCv7TgiNJoM">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT20KRubUbmT0qbCeY1661FCv7TgiNJoM&callback=initMap">
     </script>
 
     <style>
@@ -15,8 +15,28 @@
             margin: 0;
             padding: 0;
         }
+        .page-header > img,
+        .page-header > h1 {
+            display: inline-block;
+        }
+
         #map {
             height: 100%;
+        }
+
+        .panel-body {
+            width: 100%;
+        }
+
+        .leftBlock {
+            /*display: inline; */
+            width: 25%;
+            float:left; /* add this */
+        }
+
+        .rightBlock {
+            width: 75%;
+            float:left; /* add this */
         }
     </style>
 
@@ -26,7 +46,10 @@
 <div class="container">
 
     <div class="page-header">
-        <h1>Frostlight Locatr <small>CloudKit JS Application</small></h1>
+        <img src="http://frostlight.se/assets/images/pages/features/about02.png">
+        <h1>Frostlight Locatr
+            <small>CloudKit JS Application</small>
+        </h1>
     </div>
 
     <div id="map"></div>
@@ -36,9 +59,13 @@
     <div data-bind="foreach: locations">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h4><a data-bind="click: $parent.initMap"><span data-bind="text: fields.name.value"></span></a></h4>
-                <p>Latitute: <span data-bind="text: fields.location.value.latitude"></span></p>
-                <p>Longitude: <span data-bind="text: fields.location.value.longitude"></span></p>
+                <div class="leftBlock">
+                    <h4><a data-bind="click: $parent.initMap"><span data-bind="text: fields.name.value"></span></a></h4>
+                    <p>Latitute: <span data-bind="text: fields.location.value.latitude"></span></p>
+                    <p>Longitude: <span data-bind="text: fields.location.value.longitude"></span></p>
+                </div>
+                <!--<div class="rightBlock"><img height="175" width="175" data-bind="attr: {src: fields.location.value.logo}" /></div>-->
+                <div class="rightBlock"><img src="http://frostlight.se/assets/images/pages/clients/macoteket.png"></div>
             </div>
         </div>
     </div>
@@ -47,7 +74,7 @@
 
 
 <script>
-    function initMap () {
+    function initMap() {
         var myLatLng = {lat: 59.314446, lng: 18.074375};
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,

@@ -17,7 +17,7 @@ window.addEventListener('cloudkitloaded', function() {
 
         self.locations = ko.observableArray();
 
-        self.newLocationTitle = ko.observable(''); //OBS OBS OBS OBS OBS OBS OBS OBS OBS OBS!!!!!!!!!!!!!!!!
+        // self.newName = ko.observable(''); //OBS OBS OBS OBS OBS OBS OBS OBS OBS OBS!!!!!!!!!!!!!!!!
 
         self.fetchRecords = function() {
             var query = { recordType: 'Client' };
