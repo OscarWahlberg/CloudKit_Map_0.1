@@ -1,7 +1,7 @@
 /**
  * Created by Oscar on 2016-10-26.
  */
-window.addEventListener('cloudkitloaded', function() {
+window.addEventListener('cloudkitloaded', function () {
     CloudKit.configure({
         containers: [{
             containerIdentifier: 'iCloud.com.Frostlight.Frostlight',
@@ -19,12 +19,12 @@ window.addEventListener('cloudkitloaded', function() {
 
         // self.newName = ko.observable(''); //OBS OBS OBS OBS OBS OBS OBS OBS OBS OBS!!!!!!!!!!!!!!!!
 
-        self.fetchRecords = function() {
-            var query = { recordType: 'Client' };
+        self.fetchRecords = function () {
+            var query = {recordType: 'Client'};
 
             // Execute the query.
             return publicDB.performQuery(query).then(function (response) {
-                if(response.hasErrors) {
+                if (response.hasErrors) {
                     console.error(response.errors[0]);
                     return;
                 }
@@ -40,23 +40,29 @@ window.addEventListener('cloudkitloaded', function() {
 
         };
 
-        self.initMap = function (location) {
-            var myLatLng = {lat: location.fields.location.value.latitude, lng: location.fields.location.value.longitude};
+        var map;
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: myLatLng
-            });
+        self.setMap = function (location) {
+                var myLatLng = {
+                    lat: location.fields.location.value.latitude,
+                    lng: location.fields.location.value.longitude
+                };
 
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                title: 'Map'
-            });
-        }
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 4,
+                    center: myLatLng
+                });
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: 'Map'
+                });
+
+            }
 
 
-        container.setUpAuth().then(function(userInfo) {
+        container.setUpAuth().then(function (userInfo) {
             self.fetchRecords();  // Records are public
         });
 
